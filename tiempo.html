@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Tiempo de filtración</title>
+
+<link rel="stylesheet" href="estilos.css">
+
+
+<style>
+
+/* =========================================
+   ESTILOS SOLO PARA LA PÁGINA TIEMPO
+========================================= */
+
+body {
+    margin: 0;
+    background: #f4f9f9 !important;
+    color: #263238;
+}
+
+
+/* CONTENEDOR PRINCIPAL */
+
+.contenedor-tiempo {
+    width: 92%;
+    max-width: 1100px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+
+/* TÍTULO */
+
+.titulo-tiempo {
+    margin-bottom: 45px;
+}
+
+.titulo-tiempo h1 {
+    color: #00897b !important;
+    font-size: 46px;
+    margin-bottom: 12px;
+}
+
+.titulo-tiempo p {
+    color: #536363 !important;
+    font-size: 20px;
+    margin: 0;
+}
+
+
+/* =========================================
+   TARJETAS
+========================================= */
+
+.tarjetas-tiempo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+
+/* TARJETA INDIVIDUAL */
+
+.tarjeta-tiempo {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 35px 25px;
+
+    box-shadow:
+        0 7px 20px rgba(0,0,0,0.10);
+
+    border: 1px solid #eeeeee;
+}
+
+
+/* NOMBRE DEL FILTRO */
+
+.tarjeta-tiempo h2 {
+    color: #00897b;
+    font-size: 30px;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+
+/* CAMPOS MINUTOS Y SEGUNDOS */
+
+.campos-tiempo {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+
+/* CADA CAMPO */
+
+.campo {
+    width: 115px;
+}
+
+.campo label {
+    display: block;
+
+    font-weight: bold;
+
+    color: #263238;
+
+    margin-bottom: 10px;
+
+    font-size: 16px;
+}
+
+
+/* INPUT */
+
+.campo input {
+    width: 100%;
+
+    padding: 14px 8px;
+
+    border: 2px solid #009688;
+
+    border-radius: 10px;
+
+    font-size: 22px;
+
+    text-align: center;
+
+    background: white;
+
+    color: #333;
+
+    outline: none;
+
+    box-sizing: border-box;
+}
+
+
+/* CUANDO SE SELECCIONA */
+
+.campo input:focus {
+    border-color: #00695c;
+
+    box-shadow:
+        0 0 0 3px rgba(0,150,136,0.12);
+}
+
+
+/* =========================================
+   BOTONES
+========================================= */
+
+.botones-tiempo {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    margin-top: 40px;
+
+    flex-wrap: wrap;
+}
+
+
+.btn-guardar,
+.btn-reiniciar {
+    border: none;
+
+    border-radius: 11px;
+
+    padding: 16px 32px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.btn-guardar {
+    background: #20c997;
+}
+
+
+.btn-reiniciar {
+    background: #dc2626;
+}
+
+
+.btn-guardar:hover,
+.btn-reiniciar:hover {
+    transform: translateY(-2px);
+    opacity: 0.90;
+}
+
+
+/* =========================================
+   MENSAJE
+========================================= */
+
+#mensaje {
+    margin-top: 25px;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    color: #00897b;
+}
+
+
+/* =========================================
+   BOTÓN RESULTADOS
+========================================= */
+
+.ir-resultados {
+    display: inline-block;
+
+    margin-top: 25px;
+
+    padding: 13px 25px;
+
+    background: #00897b;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 9px;
+
+    font-weight: bold;
+}
+
+
+.ir-resultados:hover {
+    background: #00695c;
+}
+
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media screen and (max-width: 800px) {
+
+    .contenedor-tiempo {
+        margin-top: 35px;
+    }
+
+    .titulo-tiempo h1 {
+        font-size: 34px;
+    }
+
+    .titulo-tiempo p {
+        font-size: 17px;
+    }
+
+    .tarjetas-tiempo {
+        grid-template-columns: 1fr;
+    }
+
+    .tarjeta-tiempo {
+        max-width: 430px;
+        width: 100%;
+        margin: auto;
+        box-sizing: border-box;
+    }
+
+}
+
+
+/* CELULAR PEQUEÑO */
+
+@media screen and (max-width: 450px) {
+
+    .campos-tiempo {
+        gap: 10px;
+    }
+
+    .campo {
+        width: 45%;
+    }
+
+    .botones-tiempo {
+        flex-direction: column;
+    }
+
+    .btn-guardar,
+    .btn-reiniciar {
+        width: 100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+<!-- =====================================
+     MENÚ
+====================================== -->
+
+<nav>
+
+<a href="index.html">Inicio</a>
+
+<a href="problema.html">Problema</a>
+
+<a href="filtros.html">Filtros</a>
+
+<a href="experimento.html">Experimento</a>
+
+<a href="tiempo.html" class="activo">Tiempo</a>
+
+<a href="resultados.html">Resultados</a>
+
+<a href="conclusion.html">Conclusión</a>
+
+</nav>
+
+
+
+<!-- =====================================
+     CONTENIDO
+====================================== -->
+
+<main class="contenedor-tiempo">
+
+
+<!-- TÍTULO -->
+
+<div class="titulo-tiempo">
+
+<h1>
+⏱️ Tiempo de filtración
+</h1>
+
+<p>
+Registra cuánto tarda cada filtro en procesar la muestra de agua.
+</p>
+
+</div>
+
+
+
+<!-- =====================================
+     TARJETAS
+====================================== -->
+
+<div class="tarjetas-tiempo">
+
+
+<!-- FILTRO A -->
+
+<div class="tarjeta-tiempo">
+
+<h2>Filtro A</h2>
+
+<div class="campos-tiempo">
+
+
+<div class="campo">
+
+<label for="minA">
+Minutos
+</label>
+
+<input
+type="number"
+id="minA"
+min="0"
+placeholder="0">
+
+</div>
+
+
+<div class="campo">
+
+<label for="segA">
+Segundos
+</label>
+
+<input
+type="number"
+id="segA"
+min="0"
+max="59"
+placeholder="0">
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- FILTRO B -->
+
+<div class="tarjeta-tiempo">
+
+<h2>Filtro B</h2>
+
+<div class="campos-tiempo">
+
+
+<div class="campo">
+
+<label for="minB">
+Minutos
+</label>
+
+<input
+type="number"
+id="minB"
+min="0"
+placeholder="0">
+
+</div>
+
+
+<div class="campo">
+
+<label for="segB">
+Segundos
+</label>
+
+<input
+type="number"
+id="segB"
+min="0"
+max="59"
+placeholder="0">
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- FILTRO C -->
+
+<div class="tarjeta-tiempo">
+
+<h2>Filtro C</h2>
+
+<div class="campos-tiempo">
+
+
+<div class="campo">
+
+<label for="minC">
+Minutos
+</label>
+
+<input
+type="number"
+id="minC"
+min="0"
+placeholder="0">
+
+</div>
+
+
+<div class="campo">
+
+<label for="segC">
+Segundos
+</label>
+
+<input
+type="number"
+id="segC"
+min="0"
+max="59"
+placeholder="0">
+
+</div>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =====================================
+     BOTONES
+====================================== -->
+
+<div class="botones-tiempo">
+
+<button
+class="btn-guardar"
+onclick="guardarTiempos()">
+
+Guardar resultados
+
+</button>
+
+
+<button
+class="btn-reiniciar"
+onclick="reiniciarExperimento()">
+
+Reiniciar experimento
+
+</button>
+
+</div>
+
+
+
+<!-- MENSAJE -->
+
+<div id="mensaje"></div>
+
+
+<!-- IR A RESULTADOS -->
+
+<a
+href="resultados.html"
+class="ir-resultados">
+
+Ver resultados →
+
+</a>
+
+
+</main>
+
+
+
+<!-- =====================================
+     JAVASCRIPT
+====================================== -->
+
+<script>
+
+
+/* =====================================
+   GUARDAR TIEMPOS
+===================================== */
+
+function guardarTiempos() {
+
+
+    const minA =
+        Number(document.getElementById("minA").value) || 0;
+
+    const segA =
+        Number(document.getElementById("segA").value) || 0;
+
+
+    const minB =
+        Number(document.getElementById("minB").value) || 0;
+
+    const segB =
+        Number(document.getElementById("segB").value) || 0;
+
+
+    const minC =
+        Number(document.getElementById("minC").value) || 0;
+
+    const segC =
+        Number(document.getElementById("segC").value) || 0;
+
+
+
+    /* VALIDAR SEGUNDOS */
+
+    if (
+        segA > 59 ||
+        segB > 59 ||
+        segC > 59
+    ) {
+
+        document.getElementById("mensaje").innerHTML =
+        "Los segundos deben estar entre 0 y 59.";
+
+        return;
+    }
+
+
+
+    /* VALIDAR QUE EXISTA ALGÚN TIEMPO */
+
+    if (
+        minA === 0 &&
+        segA === 0 &&
+        minB === 0 &&
+        segB === 0 &&
+        minC === 0 &&
+        segC === 0
+    ) {
+
+        document.getElementById("mensaje").innerHTML =
+        "Ingresa los tiempos obtenidos durante el experimento.";
+
+        return;
+    }
+
+
+
+    /* CREAR OBJETO */
+
+    const tiempos = {
+
+        A: {
+            minutos: minA,
+            segundos: segA
+        },
+
+        B: {
+            minutos: minB,
+            segundos: segB
+        },
+
+        C: {
+            minutos: minC,
+            segundos: segC
+        }
+
+    };
+
+
+
+    /* GUARDAR */
+
+    localStorage.setItem(
+        "tiemposFiltros",
+        JSON.stringify(tiempos)
+    );
+
+
+
+    document.getElementById("mensaje").innerHTML =
+    "✓ Tiempos guardados correctamente.";
+
+
+
+    /* PASAR A RESULTADOS */
+
+    setTimeout(function() {
+
+        window.location.href =
+        "resultados.html";
+
+    }, 700);
+
+}
+
+
+
+/* =====================================
+   REINICIAR EXPERIMENTO
+===================================== */
+
+function reiniciarExperimento() {
+
+
+    const confirmar = confirm(
+        "¿Seguro que quieres borrar todos los datos del experimento?"
+    );
+
+
+    if (!confirmar) {
+        return;
+    }
+
+
+
+    /* BORRAR DATOS GUARDADOS */
+
+    localStorage.removeItem(
+        "tiemposFiltros"
+    );
+
+    localStorage.removeItem(
+        "resultadosFiltros"
+    );
+
+
+
+    /* LIMPIAR CAMPOS */
+
+    document.getElementById("minA").value = "";
+
+    document.getElementById("segA").value = "";
+
+
+    document.getElementById("minB").value = "";
+
+    document.getElementById("segB").value = "";
+
+
+    document.getElementById("minC").value = "";
+
+    document.getElementById("segC").value = "";
+
+
+
+    document.getElementById("mensaje").innerHTML =
+    "✓ Experimento reiniciado. Todos los datos fueron borrados.";
+
+}
+
+
+
+/* =====================================
+   RECUPERAR DATOS GUARDADOS
+===================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+
+        const datosGuardados =
+            localStorage.getItem(
+                "tiemposFiltros"
+            );
+
+
+        if (!datosGuardados) {
+            return;
+        }
+
+
+
+        const tiempos =
+            JSON.parse(datosGuardados);
+
+
+
+        if (tiempos.A) {
+
+            document.getElementById("minA").value =
+                tiempos.A.minutos;
+
+            document.getElementById("segA").value =
+                tiempos.A.segundos;
+
+        }
+
+
+        if (tiempos.B) {
+
+            document.getElementById("minB").value =
+                tiempos.B.minutos;
+
+            document.getElementById("segB").value =
+                tiempos.B.segundos;
+
+        }
+
+
+        if (tiempos.C) {
+
+            document.getElementById("minC").value =
+                tiempos.C.minutos;
+
+            document.getElementById("segC").value =
+                tiempos.C.segundos;
+
+        }
+
+
+    }
+);
+
+
+</script>
+
+
+
+</body>
+
+</html>

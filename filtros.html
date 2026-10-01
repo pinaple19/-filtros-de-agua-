@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- IMPORTANTE PARA QUE SE VEA BIEN EN CELULAR -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nuestros filtros | Proyecto de Ciencias</title>
+
+    <!-- ARCHIVO GENERAL DE ESTILOS -->
+    <link rel="stylesheet" href="estilos.css">
+
+
+    <!-- ESTILOS ESPECÍFICOS DE ESTA PÁGINA -->
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        /* =========================
+           CUERPO DE LA PÁGINA
+        ========================= */
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f9f9;
+            color: #333;
+        }
+
+
+        /* =========================
+           MENÚ DE NAVEGACIÓN
+        ========================= */
+
+        nav {
+            background-color: #00897b;
+            padding: 18px 20px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 25px;
+
+            flex-wrap: wrap;
+
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+        }
+
+
+        nav a {
+            color: white;
+            text-decoration: none;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            padding: 8px 10px;
+
+            border-radius: 7px;
+
+            transition: background-color 0.2s;
+        }
+
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.20);
+        }
+
+
+        /* PÁGINA ACTUAL */
+
+        nav a.activo {
+            background-color: white;
+            color: #00897b;
+        }
+
+
+        /* =========================
+           CONTENIDO PRINCIPAL
+        ========================= */
+
+        .contenedor {
+            width: 92%;
+            max-width: 1250px;
+
+            margin: 45px auto 60px auto;
+        }
+
+
+        /* =========================
+           ENCABEZADO
+        ========================= */
+
+        .encabezado {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+
+        .encabezado h1 {
+            color: #00897b;
+
+            font-size: 44px;
+
+            margin: 0 0 12px 0;
+        }
+
+
+        .encabezado p {
+            font-size: 19px;
+
+            color: #555;
+
+            margin: 0;
+        }
+
+
+        /* =========================
+           TARJETAS DE FILTROS
+        ========================= */
+
+        .tarjetas-filtros {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 25px;
+
+            align-items: start;
+        }
+
+
+        .tarjeta-filtro {
+            background-color: white;
+
+            padding: 8px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 5px 18px rgba(0, 0, 0, 0.12);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .tarjeta-filtro:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.17);
+        }
+
+
+        /* =========================
+           IMÁGENES
+        ========================= */
+
+        .imagen-filtro {
+            display: block;
+
+            width: 100%;
+
+            height: auto;
+
+            border-radius: 15px;
+        }
+
+
+        /* =========================
+           EXPLICACIÓN
+        ========================= */
+
+        .comparacion {
+            margin-top: 40px;
+
+            background-color: white;
+
+            border-left: 6px solid #00897b;
+
+            border-radius: 15px;
+
+            padding: 25px 30px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .comparacion h2 {
+            color: #00897b;
+
+            font-size: 25px;
+
+            margin-top: 0;
+
+            margin-bottom: 12px;
+        }
+
+
+        .comparacion p {
+            font-size: 17px;
+
+            line-height: 1.7;
+
+            margin: 0;
+        }
+
+
+        /* =========================
+           VARIABLES
+        ========================= */
+
+        .variables {
+            margin-top: 25px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+
+        .variable {
+            background-color: white;
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            text-align: center;
+
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+
+        .variable .icono {
+            font-size: 35px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .variable h3 {
+            color: #00897b;
+
+            margin: 5px 0 8px 0;
+
+            font-size: 19px;
+        }
+
+
+        .variable p {
+            margin: 0;
+
+            font-size: 15px;
+
+            line-height: 1.5;
+
+            color: #555;
+        }
+
+
+        /* =========================
+           AVISO
+        ========================= */
+
+        .aviso {
+            margin-top: 30px;
+
+            background-color: #fff8e1;
+
+            border-left: 6px solid #f9a825;
+
+            border-radius: 12px;
+
+            padding: 20px 25px;
+
+            line-height: 1.6;
+        }
+
+
+        .aviso strong {
+            color: #7a5a00;
+        }
+
+
+        /* =========================
+           BOTONES
+        ========================= */
+
+        .botones {
+            margin-top: 35px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .boton {
+            display: inline-block;
+
+            padding: 14px 25px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            transition:
+                transform 0.2s,
+                background-color 0.2s;
+        }
+
+
+        .boton:hover {
+            transform: translateY(-2px);
+        }
+
+
+        .boton-anterior {
+            background-color: #e0e0e0;
+
+            color: #333;
+        }
+
+
+        .boton-anterior:hover {
+            background-color: #d0d0d0;
+        }
+
+
+        .boton-siguiente {
+            background-color: #00897b;
+
+            color: white;
+        }
+
+
+        .boton-siguiente:hover {
+            background-color: #00695c;
+        }
+
+
+        /* =========================
+           PIE DE PÁGINA
+        ========================= */
+
+        footer {
+            margin-top: 60px;
+
+            background-color: #00695c;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 20px;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media screen and (max-width: 950px) {
+
+            .tarjetas-filtros {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .tarjeta-filtro:last-child {
+                grid-column: 1 / -1;
+
+                max-width: 450px;
+
+                margin: 0 auto;
+            }
+
+
+            .variables {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        /* =========================
+           CELULAR
+        ========================= */
+
+        @media screen and (max-width: 600px) {
+
+            nav {
+                gap: 5px;
+
+                padding: 12px 8px;
+            }
+
+
+            nav a {
+                font-size: 13px;
+
+                padding: 7px 6px;
+            }
+
+
+            .contenedor {
+                width: 100%;
+
+                padding: 0 15px;
+
+                margin-top: 25px;
+            }
+
+
+            .encabezado h1 {
+                font-size: 31px;
+            }
+
+
+            .encabezado p {
+                font-size: 16px;
+
+                line-height: 1.5;
+            }
+
+
+            .tarjetas-filtros {
+                grid-template-columns: 1fr;
+
+                gap: 25px;
+            }
+
+
+            .tarjeta-filtro,
+            .tarjeta-filtro:last-child {
+                width: 100%;
+
+                max-width: 400px;
+
+                margin: 0 auto;
+
+                grid-column: auto;
+            }
+
+
+            .comparacion {
+                padding: 20px;
+
+                margin-top: 30px;
+            }
+
+
+            .comparacion h2 {
+                font-size: 22px;
+            }
+
+
+            .comparacion p {
+                font-size: 16px;
+            }
+
+
+            .variables {
+                grid-template-columns: 1fr;
+            }
+
+
+            .botones {
+                flex-direction: column;
+            }
+
+
+            .boton {
+                width: 100%;
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         MENÚ
+    ========================== -->
+
+    <nav>
+
+        <a href="index.html">
+            Inicio
+        </a>
+
+        <a href="problema.html">
+            Problema
+        </a>
+
+        <a href="filtros.html" class="activo">
+            Filtros
+        </a>
+
+        <a href="experimento.html">
+            Experimento
+        </a>
+
+        <a href="tiempo.html">
+            Tiempo
+        </a>
+
+        <a href="resultados.html">
+            Resultados
+        </a>
+
+        <a href="conclusion.html">
+            Conclusión
+        </a>
+
+    </nav>
+
+
+
+    <!-- =========================
+         CONTENIDO
+    ========================== -->
+
+    <main class="contenedor">
+
+
+        <!-- ENCABEZADO -->
+
+        <section class="encabezado">
+
+            <h1>
+                🧪 Nuestros filtros
+            </h1>
+
+            <p>
+                Construimos tres sistemas diferentes
+                para poder compararlos.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             FILTROS
+        ========================== -->
+
+        <section class="tarjetas-filtros">
+
+
+            <!-- FILTRO A -->
+
+            <article class="tarjeta-filtro">
+
+                <img
+                    src="imagenes/filtro-a.png"
+                    alt="Filtro A compuesto por grava y guata"
+                    class="imagen-filtro">
+
+            </article>
+
+
+
+            <!-- FILTRO B -->
+
+            <article class="tarjeta-filtro">
+
+                <img
+                    src="imagenes/filtro-b.png"
+                    alt="Filtro B compuesto por grava, arena y guata"
+                    class="imagen-filtro">
+
+            </article>
+
+
+
+            <!-- FILTRO C -->
+
+            <article class="tarjeta-filtro">
+
+                <img
+                    src="imagenes/filtro-c.png"
+                    alt="Filtro C compuesto por grava, arena, carbón activado y guata"
+                    class="imagen-filtro">
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             QUÉ VAMOS A COMPARAR
+        ========================== -->
+
+        <section class="comparacion">
+
+            <h2>
+                🔎 ¿Qué queremos comparar?
+            </h2>
+
+            <p>
+                Los tres filtros recibirán la misma cantidad
+                de agua turbia. Compararemos la apariencia
+                del agua después de la filtración, el tiempo
+                que tarda cada filtro y el volumen de agua
+                recuperado.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             VARIABLES QUE OBSERVAREMOS
+        ========================== -->
+
+        <section class="variables">
+
+
+            <div class="variable">
+
+                <div class="icono">
+                    💧
+                </div>
+
+                <h3>
+                    Apariencia del agua
+                </h3>
+
+                <p>
+                    Observaremos qué tan turbia o clara
+                    queda el agua después de pasar
+                    por cada filtro.
+                </p>
+
+            </div>
+
+
+
+            <div class="variable">
+
+                <div class="icono">
+                    ⏱️
+                </div>
+
+                <h3>
+                    Tiempo de filtración
+                </h3>
+
+                <p>
+                    Mediremos cuánto tiempo tarda
+                    el agua en atravesar cada
+                    sistema de filtración.
+                </p>
+
+            </div>
+
+
+
+            <div class="variable">
+
+                <div class="icono">
+                    🧪
+                </div>
+
+                <h3>
+                    Volumen recuperado
+                </h3>
+
+                <p>
+                    Mediremos cuántos mililitros
+                    de agua obtenemos después
+                    de la filtración.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             AVISO DE SEGURIDAD
+        ========================== -->
+
+        <section class="aviso">
+
+            <strong>Importante:</strong>
+
+            este experimento permite observar procesos
+            de filtración y adsorción. El agua obtenida
+            después de pasar por los filtros
+            <strong>no es potable y no debe beberse.</strong>
+
+        </section>
+
+
+
+        <!-- =========================
+             NAVEGACIÓN
+        ========================== -->
+
+        <div class="botones">
+
+            <a
+                href="problema.html"
+                class="boton boton-anterior">
+
+                ← Anterior: problema
+
+            </a>
+
+
+            <a
+                href="experimento.html"
+                class="boton boton-siguiente">
+
+                Siguiente: experimento →
+
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         PIE DE PÁGINA
+    ========================== -->
+
+    <footer>
+
+        Proyecto de Ciencias ·
+        Comparación de filtros de agua
+
+    </footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Resultados</title>
+
+<link rel="stylesheet" href="estilos.css">
+
+<style>
+
+/* =========================================
+   CONTENEDOR
+========================================= */
+
+.contenedor-resultados {
+    width: 92%;
+    max-width: 1150px;
+    margin: 55px auto;
+}
+
+.titulo-resultados {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.titulo-resultados h1 {
+    color: #00897b;
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.titulo-resultados p {
+    color: #546e7a;
+    font-size: 18px;
+}
+
+
+/* =========================================
+   INFORMACIÓN DEL EXPERIMENTO
+========================================= */
+
+.info-experimento {
+    background: #e0f2f1;
+    border-left: 5px solid #009688;
+    border-radius: 12px;
+
+    padding: 18px 22px;
+
+    margin-bottom: 30px;
+
+    color: #37474f;
+
+    line-height: 1.6;
+}
+
+.info-experimento strong {
+    color: #00796b;
+}
+
+
+/* =========================================
+   TABLA
+========================================= */
+
+.tabla-contenedor {
+    overflow-x: auto;
+
+    background: white;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 6px 20px rgba(0,0,0,0.09);
+
+    margin-bottom: 30px;
+}
+
+.tabla-resultados {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 900px;
+}
+
+.tabla-resultados th {
+    background: #00897b;
+
+    color: white;
+
+    padding: 16px 12px;
+
+    text-align: center;
+
+    font-size: 15px;
+}
+
+.tabla-resultados td {
+    padding: 16px 10px;
+
+    text-align: center;
+
+    border-bottom: 1px solid #e0e0e0;
+
+    color: #37474f;
+}
+
+.tabla-resultados tbody tr:hover {
+    background: #f5fbfa;
+}
+
+.nombre-filtro {
+    font-weight: bold;
+    color: #00796b;
+}
+
+
+/* =========================================
+   CAMPOS
+========================================= */
+
+.tabla-resultados input {
+    width: 90px;
+
+    padding: 9px;
+
+    border: 2px solid #b2dfdb;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+    font-size: 16px;
+
+    box-sizing: border-box;
+}
+
+.tabla-resultados input:focus {
+    outline: none;
+
+    border-color: #00897b;
+
+    box-shadow:
+        0 0 0 3px rgba(0,137,123,0.10);
+}
+
+.tabla-resultados select {
+    padding: 9px;
+
+    border: 2px solid #b2dfdb;
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: #37474f;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   FLUJO
+========================================= */
+
+.flujo {
+    font-weight: bold;
+    color: #00897b;
+}
+
+
+/* =========================================
+   BOTONES
+========================================= */
+
+.botones-resultados {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    flex-wrap: wrap;
+
+    margin-top: 30px;
+}
+
+.btn-guardar,
+.btn-reiniciar {
+    border: none;
+
+    border-radius: 11px;
+
+    padding: 15px 28px;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn-guardar {
+    background: #20c997;
+}
+
+.btn-reiniciar {
+    background: #dc2626;
+}
+
+.btn-guardar:hover,
+.btn-reiniciar:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 5px 12px rgba(0,0,0,0.15);
+}
+
+
+/* =========================================
+   MENSAJE
+========================================= */
+
+#mensajeResultados {
+    text-align: center;
+
+    margin-top: 20px;
+
+    font-weight: bold;
+
+    color: #00897b;
+
+    min-height: 25px;
+}
+
+
+/* =========================================
+   EXPLICACIÓN
+========================================= */
+
+.explicacion-calculo {
+    margin-top: 35px;
+
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,0.07);
+}
+
+.explicacion-calculo h2 {
+    color: #00897b;
+
+    margin-top: 0;
+}
+
+.formula {
+    background: #f0f9f8;
+
+    border-radius: 10px;
+
+    padding: 15px;
+
+    margin-top: 15px;
+
+    text-align: center;
+
+    color: #00695c;
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+
+/* =========================================
+   BOTÓN CONCLUSIÓN
+========================================= */
+
+.siguiente-resultados {
+    text-align: center;
+
+    margin-top: 35px;
+}
+
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media screen and (max-width: 700px) {
+
+    .contenedor-resultados {
+        width: 94%;
+        margin-top: 35px;
+    }
+
+    .titulo-resultados h1 {
+        font-size: 34px;
+    }
+
+    .tabla-contenedor {
+        box-shadow: none;
+        background: transparent;
+        overflow: visible;
+    }
+
+    .tabla-resultados {
+        min-width: 0;
+    }
+
+    .tabla-resultados thead {
+        display: none;
+    }
+
+    .tabla-resultados,
+    .tabla-resultados tbody,
+    .tabla-resultados tr,
+    .tabla-resultados td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .tabla-resultados tr {
+        background: white;
+
+        margin-bottom: 22px;
+
+        border-radius: 16px;
+
+        padding: 12px;
+
+        box-shadow:
+            0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .tabla-resultados td {
+        display: flex;
+
+        justify-content: space-between;
+        align-items: center;
+
+        gap: 15px;
+
+        text-align: right;
+
+        padding: 12px 8px;
+
+        border-bottom:
+            1px solid #eeeeee;
+    }
+
+    .tabla-resultados td:last-child {
+        border-bottom: none;
+    }
+
+    .tabla-resultados td::before {
+        content: attr(data-label);
+
+        font-weight: bold;
+
+        color: #546e7a;
+
+        text-align: left;
+    }
+
+    .tabla-resultados input,
+    .tabla-resultados select {
+        max-width: 150px;
+    }
+
+}
+
+
+@media screen and (max-width: 450px) {
+
+    .botones-resultados {
+        flex-direction: column;
+    }
+
+    .btn-guardar,
+    .btn-reiniciar {
+        width: 100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     MENÚ
+========================================= -->
+
+<nav>
+
+<a href="index.html">Inicio</a>
+
+<a href="problema.html">Problema</a>
+
+<a href="filtros.html">Filtros</a>
+
+<a href="experimento.html">Experimento</a>
+
+<a href="tiempo.html">Tiempo</a>
+
+<a href="resultados.html" class="activo">Resultados</a>
+
+<a href="conclusion.html">Conclusión</a>
+
+</nav>
+
+
+
+<main class="contenedor-resultados">
+
+
+<!-- =========================================
+     TÍTULO
+========================================= -->
+
+<div class="titulo-resultados">
+
+<h1>📊 Resultados</h1>
+
+<p>
+Registra y compara los resultados obtenidos
+con los tres sistemas de filtración.
+</p>
+
+</div>
+
+
+
+<!-- =========================================
+     INFORMACIÓN
+========================================= -->
+
+<div class="info-experimento">
+
+<strong>Volumen utilizado:</strong>
+
+100 mL de agua turbia como muestra control
+y 200 mL de la misma mezcla para cada filtro.
+
+</div>
+
+
+
+<!-- =========================================
+     TABLA
+========================================= -->
+
+<div class="tabla-contenedor">
+
+<table class="tabla-resultados">
+
+
+<thead>
+
+<tr>
+
+<th>Muestra</th>
+
+<th>Volumen inicial</th>
+
+<th>Tiempo</th>
+
+<th>Volumen recuperado</th>
+
+<th>Flujo</th>
+
+<th>Apariencia</th>
+
+</tr>
+
+</thead>
+
+
+
+<tbody>
+
+
+<!-- CONTROL -->
+
+<tr>
+
+<td
+data-label="Muestra"
+class="nombre-filtro">
+
+Control
+
+</td>
+
+
+<td data-label="Volumen inicial">
+
+100 mL
+
+</td>
+
+
+<td data-label="Tiempo">
+
+—
+
+</td>
+
+
+<td data-label="Volumen recuperado">
+
+100 mL
+
+</td>
+
+
+<td data-label="Flujo">
+
+—
+
+</td>
+
+
+<td data-label="Apariencia">
+
+Agua turbia
+
+</td>
+
+</tr>
+
+
+
+<!-- FILTRO A -->
+
+<tr>
+
+<td
+data-label="Muestra"
+class="nombre-filtro">
+
+Filtro A
+
+</td>
+
+
+<td data-label="Volumen inicial">
+
+200 mL
+
+</td>
+
+
+<td
+data-label="Tiempo"
+id="tiempoA">
+
+—
+
+</td>
+
+
+<td data-label="Volumen recuperado">
+
+<input
+type="number"
+id="volumenA"
+min="0"
+max="200"
+placeholder="mL"
+oninput="actualizarResultados()">
+
+</td>
+
+
+<td
+data-label="Flujo"
+class="flujo"
+id="flujoA">
+
+—
+
+</td>
+
+
+<td data-label="Apariencia">
+
+<select
+id="aparienciaA"
+onchange="actualizarResultados()">
+
+<option value="">
+Seleccionar...
+</option>
+
+<option value="Muy turbia">
+Muy turbia
+</option>
+
+<option value="Turbia">
+Turbia
+</option>
+
+<option value="Ligeramente turbia">
+Ligeramente turbia
+</option>
+
+<option value="Más clara">
+Más clara
+</option>
+
+<option value="Muy clara">
+Muy clara
+</option>
+
+</select>
+
+</td>
+
+</tr>
+
+
+
+<!-- FILTRO B -->
+
+<tr>
+
+<td
+data-label="Muestra"
+class="nombre-filtro">
+
+Filtro B
+
+</td>
+
+
+<td data-label="Volumen inicial">
+
+200 mL
+
+</td>
+
+
+<td
+data-label="Tiempo"
+id="tiempoB">
+
+—
+
+</td>
+
+
+<td data-label="Volumen recuperado">
+
+<input
+type="number"
+id="volumenB"
+min="0"
+max="200"
+placeholder="mL"
+oninput="actualizarResultados()">
+
+</td>
+
+
+<td
+data-label="Flujo"
+class="flujo"
+id="flujoB">
+
+—
+
+</td>
+
+
+<td data-label="Apariencia">
+
+<select
+id="aparienciaB"
+onchange="actualizarResultados()">
+
+<option value="">
+Seleccionar...
+</option>
+
+<option value="Muy turbia">
+Muy turbia
+</option>
+
+<option value="Turbia">
+Turbia
+</option>
+
+<option value="Ligeramente turbia">
+Ligeramente turbia
+</option>
+
+<option value="Más clara">
+Más clara
+</option>
+
+<option value="Muy clara">
+Muy clara
+</option>
+
+</select>
+
+</td>
+
+</tr>
+
+
+
+<!-- FILTRO C -->
+
+<tr>
+
+<td
+data-label="Muestra"
+class="nombre-filtro">
+
+Filtro C
+
+</td>
+
+
+<td data-label="Volumen inicial">
+
+200 mL
+
+</td>
+
+
+<td
+data-label="Tiempo"
+id="tiempoC">
+
+—
+
+</td>
+
+
+<td data-label="Volumen recuperado">
+
+<input
+type="number"
+id="volumenC"
+min="0"
+max="200"
+placeholder="mL"
+oninput="actualizarResultados()">
+
+</td>
+
+
+<td
+data-label="Flujo"
+class="flujo"
+id="flujoC">
+
+—
+
+</td>
+
+
+<td data-label="Apariencia">
+
+<select
+id="aparienciaC"
+onchange="actualizarResultados()">
+
+<option value="">
+Seleccionar...
+</option>
+
+<option value="Muy turbia">
+Muy turbia
+</option>
+
+<option value="Turbia">
+Turbia
+</option>
+
+<option value="Ligeramente turbia">
+Ligeramente turbia
+</option>
+
+<option value="Más clara">
+Más clara
+</option>
+
+<option value="Muy clara">
+Muy clara
+</option>
+
+</select>
+
+</td>
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+</div>
+
+
+
+<!-- =========================================
+     BOTONES
+========================================= -->
+
+<div class="botones-resultados">
+
+<button
+class="btn-guardar"
+onclick="guardarResultados()">
+
+Guardar resultados
+
+</button>
+
+
+<button
+class="btn-reiniciar"
+onclick="reiniciarExperimento()">
+
+Reiniciar experimento
+
+</button>
+
+</div>
+
+
+<div id="mensajeResultados"></div>
+
+
+
+<!-- =========================================
+     EXPLICACIÓN
+========================================= -->
+
+<section class="explicacion-calculo">
+
+<h2>🧮 ¿Cómo se calcula el flujo?</h2>
+
+<p>
+
+El flujo indica cuántos mililitros de agua
+atraviesan el filtro por minuto.
+
+</p>
+
+
+<div class="formula">
+
+Flujo =
+Volumen recuperado (mL)
+÷
+Tiempo de filtración (min)
+
+</div>
+
+
+<p>
+
+Por ejemplo, si se recuperan
+<strong>180 mL</strong>
+en
+<strong>3 minutos</strong>:
+
+</p>
+
+
+<div class="formula">
+
+180 ÷ 3 = 60 mL/min
+
+</div>
+
+</section>
+
+
+
+<!-- =========================================
+     SIGUIENTE
+========================================= -->
+
+<div class="siguiente-resultados">
+
+<a
+class="boton"
+href="conclusion.html">
+
+Siguiente: conclusiones →
+
+</a>
+
+</div>
+
+
+</main>
+
+
+
+<footer>
+
+Filtros de Agua con Tecnología
+
+</footer>
+
+
+
+<script>
+
+/* =========================================
+   CONVERTIR TIEMPO A SEGUNDOS
+========================================= */
+
+function tiempoEnSegundos(tiempo) {
+
+    if (!tiempo) {
+        return 0;
+    }
+
+    return (
+        Number(tiempo.minutos || 0) * 60
+        +
+        Number(tiempo.segundos || 0)
+    );
+
+}
+
+
+
+/* =========================================
+   MOSTRAR TIEMPO
+========================================= */
+
+function mostrarTiempo(tiempo) {
+
+    if (!tiempo) {
+        return "—";
+    }
+
+    const minutos =
+        Number(tiempo.minutos || 0);
+
+    const segundos =
+        Number(tiempo.segundos || 0);
+
+    if (minutos === 0 && segundos === 0) {
+        return "—";
+    }
+
+    return (
+        minutos +
+        " min " +
+        segundos +
+        " s"
+    );
+
+}
+
+
+
+/* =========================================
+   CALCULAR FLUJO
+========================================= */
+
+function calcularFlujo(volumen, tiempo) {
+
+    const segundos =
+        tiempoEnSegundos(tiempo);
+
+    if (
+        segundos <= 0 ||
+        volumen === "" ||
+        volumen === null
+    ) {
+
+        return "—";
+
+    }
+
+    const volumenNumero =
+        Number(volumen);
+
+    if (
+        isNaN(volumenNumero) ||
+        volumenNumero < 0
+    ) {
+
+        return "—";
+
+    }
+
+
+    const minutos =
+        segundos / 60;
+
+
+    const flujo =
+        volumenNumero / minutos;
+
+
+    return flujo.toFixed(1) + " mL/min";
+
+}
+
+
+
+/* =========================================
+   LEER LOS TIEMPOS GUARDADOS
+========================================= */
+
+function obtenerTiempos() {
+
+    const guardados =
+        localStorage.getItem(
+            "tiemposFiltros"
+        );
+
+
+    if (!guardados) {
+
+        return {
+            A: null,
+            B: null,
+            C: null
+        };
+
+    }
+
+
+    try {
+
+        return JSON.parse(guardados);
+
+    }
+
+    catch (error) {
+
+        return {
+            A: null,
+            B: null,
+            C: null
+        };
+
+    }
+
+}
+
+
+
+/* =========================================
+   MOSTRAR RESULTADOS EN PANTALLA
+   SIN GUARDAR
+========================================= */
+
+function calcularResultadosPantalla() {
+
+    const tiempos =
+        obtenerTiempos();
+
+
+    document.getElementById(
+        "tiempoA"
+    ).textContent =
+        mostrarTiempo(tiempos.A);
+
+
+    document.getElementById(
+        "tiempoB"
+    ).textContent =
+        mostrarTiempo(tiempos.B);
+
+
+    document.getElementById(
+        "tiempoC"
+    ).textContent =
+        mostrarTiempo(tiempos.C);
+
+
+
+    const volumenA =
+        document.getElementById(
+            "volumenA"
+        ).value;
+
+
+    const volumenB =
+        document.getElementById(
+            "volumenB"
+        ).value;
+
+
+    const volumenC =
+        document.getElementById(
+            "volumenC"
+        ).value;
+
+
+
+    document.getElementById(
+        "flujoA"
+    ).textContent =
+        calcularFlujo(
+            volumenA,
+            tiempos.A
+        );
+
+
+    document.getElementById(
+        "flujoB"
+    ).textContent =
+        calcularFlujo(
+            volumenB,
+            tiempos.B
+        );
+
+
+    document.getElementById(
+        "flujoC"
+    ).textContent =
+        calcularFlujo(
+            volumenC,
+            tiempos.C
+        );
+
+}
+
+
+
+/* =========================================
+   ACTUALIZAR Y GUARDAR
+========================================= */
+
+function actualizarResultados() {
+
+    calcularResultadosPantalla();
+
+    guardarResultadosAutomaticamente();
+
+}
+
+
+
+/* =========================================
+   GUARDADO AUTOMÁTICO
+========================================= */
+
+function guardarResultadosAutomaticamente() {
+
+    const resultados = {
+
+        volumenInicial: {
+            control: 100,
+            A: 200,
+            B: 200,
+            C: 200
+        },
+
+        volumenA:
+            document.getElementById(
+                "volumenA"
+            ).value,
+
+        volumenB:
+            document.getElementById(
+                "volumenB"
+            ).value,
+
+        volumenC:
+            document.getElementById(
+                "volumenC"
+            ).value,
+
+        aparienciaA:
+            document.getElementById(
+                "aparienciaA"
+            ).value,
+
+        aparienciaB:
+            document.getElementById(
+                "aparienciaB"
+            ).value,
+
+        aparienciaC:
+            document.getElementById(
+                "aparienciaC"
+            ).value
+
+    };
+
+
+    localStorage.setItem(
+        "resultadosFiltros",
+        JSON.stringify(resultados)
+    );
+
+}
+
+
+
+/* =========================================
+   BOTÓN GUARDAR
+========================================= */
+
+function guardarResultados() {
+
+    guardarResultadosAutomaticamente();
+
+    calcularResultadosPantalla();
+
+
+    const mensaje =
+        document.getElementById(
+            "mensajeResultados"
+        );
+
+
+    mensaje.textContent =
+        "✓ Resultados guardados correctamente.";
+
+}
+
+
+
+/* =========================================
+   RECUPERAR DATOS ANTERIORES
+========================================= */
+
+function recuperarResultados() {
+
+    const guardados =
+        localStorage.getItem(
+            "resultadosFiltros"
+        );
+
+
+    if (!guardados) {
+        return;
+    }
+
+
+    try {
+
+        const resultados =
+            JSON.parse(guardados);
+
+
+        document.getElementById(
+            "volumenA"
+        ).value =
+            resultados.volumenA || "";
+
+
+        document.getElementById(
+            "volumenB"
+        ).value =
+            resultados.volumenB || "";
+
+
+        document.getElementById(
+            "volumenC"
+        ).value =
+            resultados.volumenC || "";
+
+
+        document.getElementById(
+            "aparienciaA"
+        ).value =
+            resultados.aparienciaA || "";
+
+
+        document.getElementById(
+            "aparienciaB"
+        ).value =
+            resultados.aparienciaB || "";
+
+
+        document.getElementById(
+            "aparienciaC"
+        ).value =
+            resultados.aparienciaC || "";
+
+    }
+
+    catch (error) {
+
+        console.log(
+            "No se pudieron recuperar los resultados."
+        );
+
+    }
+
+}
+
+
+
+/* =========================================
+   REINICIAR TODO EL EXPERIMENTO
+========================================= */
+
+function reiniciarExperimento() {
+
+    const confirmar =
+        confirm(
+            "¿Seguro que quieres borrar todos los datos del experimento?"
+        );
+
+
+    if (!confirmar) {
+        return;
+    }
+
+
+    localStorage.removeItem(
+        "tiemposFiltros"
+    );
+
+
+    localStorage.removeItem(
+        "resultadosFiltros"
+    );
+
+
+    document.getElementById(
+        "volumenA"
+    ).value = "";
+
+
+    document.getElementById(
+        "volumenB"
+    ).value = "";
+
+
+    document.getElementById(
+        "volumenC"
+    ).value = "";
+
+
+    document.getElementById(
+        "aparienciaA"
+    ).value = "";
+
+
+    document.getElementById(
+        "aparienciaB"
+    ).value = "";
+
+
+    document.getElementById(
+        "aparienciaC"
+    ).value = "";
+
+
+    document.getElementById(
+        "tiempoA"
+    ).textContent = "—";
+
+
+    document.getElementById(
+        "tiempoB"
+    ).textContent = "—";
+
+
+    document.getElementById(
+        "tiempoC"
+    ).textContent = "—";
+
+
+    document.getElementById(
+        "flujoA"
+    ).textContent = "—";
+
+
+    document.getElementById(
+        "flujoB"
+    ).textContent = "—";
+
+
+    document.getElementById(
+        "flujoC"
+    ).textContent = "—";
+
+
+    document.getElementById(
+        "mensajeResultados"
+    ).textContent =
+        "Experimento reiniciado.";
+
+}
+
+
+
+/* =========================================
+   CARGAR PÁGINA
+========================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        recuperarResultados();
+
+        calcularResultadosPantalla();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Experimento</title>
+
+<link rel="stylesheet" href="estilos.css">
+
+<style>
+
+/* ==================================================
+   PREPARACIÓN DEL AGUA TURBIA
+================================================== */
+
+.preparacion-agua {
+    margin-top: 30px;
+}
+
+.agua-total {
+    max-width: 430px;
+    margin: 30px auto 15px;
+    padding: 22px;
+
+    background: #e0f2f1;
+    border: 2px solid #009688;
+    border-radius: 16px;
+
+    text-align: center;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.agua-total .cantidad {
+    display: block;
+    color: #00897b;
+    font-size: 34px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.agua-total .texto {
+    font-size: 18px;
+    font-weight: bold;
+    color: #37474f;
+}
+
+.division-texto {
+    text-align: center;
+    color: #546e7a;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 18px 0;
+}
+
+.division-texto .flecha {
+    display: block;
+    font-size: 30px;
+    color: #00897b;
+    margin-top: 5px;
+}
+
+
+/* CUATRO MUESTRAS */
+
+.distribucion-agua {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.muestra-agua {
+    background: white;
+    border-radius: 15px;
+    padding: 22px 12px;
+    text-align: center;
+    border-top: 5px solid #009688;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.09);
+}
+
+.muestra-agua .cantidad {
+    display: block;
+    color: #00897b;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.muestra-agua .nombre {
+    display: block;
+    color: #263238;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.muestra-agua small {
+    display: block;
+    color: #607d8b;
+    margin-top: 6px;
+    font-size: 14px;
+}
+
+.muestra-control {
+    border-top-color: #607d8b;
+}
+
+.muestra-control .cantidad {
+    color: #546e7a;
+}
+
+
+/* ==================================================
+   ÁREAS INTEGRADAS
+================================================== */
+
+.areas-integradas {
+    margin-top: 55px;
+    margin-bottom: 50px;
+}
+
+.titulo-areas {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.titulo-areas h2 {
+    color: #00897b;
+    margin-bottom: 8px;
+}
+
+.titulo-areas p {
+    color: #607d8b;
+    font-size: 17px;
+    margin-top: 0;
+}
+
+
+/* ==================================================
+   SMARTART
+================================================== */
+
+.smartart {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 600px;
+    margin: 25px auto 0;
+}
+
+
+/* CONECTORES */
+
+.conector {
+    position: absolute;
+    background: #80cbc4;
+    z-index: 1;
+}
+
+.linea-arriba {
+    width: 4px;
+    height: 105px;
+    left: 50%;
+    top: 145px;
+    transform: translateX(-50%);
+}
+
+.linea-abajo {
+    width: 4px;
+    height: 105px;
+    left: 50%;
+    top: 350px;
+    transform: translateX(-50%);
+}
+
+.linea-izquierda {
+    height: 4px;
+    width: 155px;
+    left: calc(50% - 245px);
+    top: 300px;
+}
+
+.linea-derecha {
+    height: 4px;
+    width: 155px;
+    left: calc(50% + 90px);
+    top: 300px;
+}
+
+
+/* FIGURAS */
+
+.figura-area {
+    position: absolute;
+
+    width: 235px;
+    min-height: 125px;
+
+    box-sizing: border-box;
+
+    padding: 18px 20px;
+
+    text-align: center;
+
+    border-radius: 22px;
+
+    z-index: 3;
+
+    box-shadow: 0 9px 22px rgba(0,0,0,0.11);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.figura-area:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.15);
+}
+
+.figura-area .icono-area {
+    width: 46px;
+    height: 46px;
+
+    margin: -40px auto 8px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+}
+
+.figura-area h3 {
+    margin: 5px 0 10px;
+    font-size: 20px;
+}
+
+.figura-area p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #455a64;
+}
+
+
+/* CIENCIAS */
+
+.ciencias {
+    top: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: #e0f2f1;
+    border: 2px solid #80cbc4;
+}
+
+.ciencias:hover {
+    transform:
+        translateX(-50%)
+        translateY(-5px);
+}
+
+.ciencias h3 {
+    color: #00796b;
+}
+
+
+/* QUÍMICA */
+
+.quimica {
+    left: 25px;
+    top: 235px;
+
+    background: #f3e5f5;
+    border: 2px solid #ce93d8;
+}
+
+.quimica h3 {
+    color: #7b1fa2;
+}
+
+
+/* FÍSICA */
+
+.fisica {
+    right: 25px;
+    top: 235px;
+
+    background: #e3f2fd;
+    border: 2px solid #90caf9;
+}
+
+.fisica h3 {
+    color: #1976d2;
+}
+
+
+/* TECNOLOGÍA */
+
+.tecnologia {
+    bottom: 10px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background: #e8f5e9;
+    border: 2px solid #a5d6a7;
+}
+
+.tecnologia:hover {
+    transform:
+        translateX(-50%)
+        translateY(-5px);
+}
+
+.tecnologia h3 {
+    color: #388e3c;
+}
+
+
+/* CENTRO */
+
+.centro-proyecto {
+    position: absolute;
+
+    left: 50%;
+    top: 300px;
+
+    transform: translate(-50%, -50%);
+
+    width: 185px;
+    height: 185px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #00a896,
+            #00796b
+        );
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    box-sizing: border-box;
+
+    padding: 20px;
+
+    z-index: 5;
+
+    border: 7px solid white;
+
+    box-shadow:
+        0 12px 30px rgba(0,121,107,0.28);
+}
+
+.centro-proyecto .gota-centro {
+    font-size: 38px;
+    margin-bottom: 4px;
+}
+
+.centro-proyecto strong {
+    font-size: 20px;
+    line-height: 1.15;
+}
+
+.centro-proyecto span {
+    margin-top: 7px;
+    font-size: 12px;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.anillo-centro {
+    position: absolute;
+
+    left: 50%;
+    top: 300px;
+
+    transform: translate(-50%, -50%);
+
+    width: 215px;
+    height: 215px;
+
+    border-radius: 50%;
+
+    border:
+        2px dashed rgba(0,150,136,0.25);
+
+    z-index: 2;
+}
+
+
+/* BOTÓN */
+
+.boton-siguiente {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+
+/* ==================================================
+   CELULAR
+================================================== */
+
+@media screen and (max-width: 750px) {
+
+    .distribucion-agua {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .smartart {
+        height: auto;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 28px;
+
+        margin-top: 35px;
+    }
+
+    .figura-area,
+    .centro-proyecto {
+        position: relative;
+
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+
+        transform: none;
+    }
+
+    .figura-area {
+        width: 85%;
+        max-width: 320px;
+
+        margin-top: 20px;
+    }
+
+    .figura-area:hover,
+    .ciencias:hover,
+    .tecnologia:hover {
+        transform: translateY(-4px);
+    }
+
+    .centro-proyecto {
+        width: 170px;
+        height: 170px;
+
+        order: -1;
+    }
+
+    .ciencias,
+    .quimica,
+    .fisica,
+    .tecnologia {
+        transform: none;
+    }
+
+    .conector,
+    .anillo-centro {
+        display: none;
+    }
+}
+
+
+@media screen and (max-width: 450px) {
+
+    .distribucion-agua {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+<a href="index.html">Inicio</a>
+
+<a href="problema.html">Problema</a>
+
+<a href="filtros.html">Filtros</a>
+
+<a href="experimento.html" class="activo">Experimento</a>
+
+<a href="tiempo.html">Tiempo</a>
+
+<a href="resultados.html">Resultados</a>
+
+<a href="conclusion.html">Conclusión</a>
+
+</nav>
+
+
+
+<div class="contenedor">
+
+
+<div class="titulo-pagina">
+
+<h1>⚗️ El experimento</h1>
+
+<p>
+Todos los filtros serán evaluados
+bajo las mismas condiciones.
+</p>
+
+</div>
+
+
+
+<!-- PREPARACIÓN -->
+
+<section class="preparacion-agua">
+
+
+<h2>💧 Preparación del agua turbia</h2>
+
+
+<p>
+
+Se preparó una única mezcla de
+
+<strong>
+700 mL de agua con arcilla natural en polvo
+</strong>.
+
+</p>
+
+
+<p>
+
+La arcilla produce partículas suspendidas
+que permiten simular agua con turbidez.
+
+</p>
+
+
+
+<div class="agua-total">
+
+<span class="cantidad">
+700 mL
+</span>
+
+<span class="texto">
+Agua turbia preparada
+</span>
+
+</div>
+
+
+
+<div class="division-texto">
+
+El agua preparada se divide
+en cuatro muestras:
+
+<span class="flecha">
+↓
+</span>
+
+</div>
+
+
+
+<div class="distribucion-agua">
+
+
+<div class="muestra-agua muestra-control">
+
+<span class="cantidad">
+100 mL
+</span>
+
+<span class="nombre">
+Control
+</span>
+
+<small>
+Sin filtrar
+</small>
+
+</div>
+
+
+
+<div class="muestra-agua">
+
+<span class="cantidad">
+200 mL
+</span>
+
+<span class="nombre">
+Filtro A
+</span>
+
+</div>
+
+
+
+<div class="muestra-agua">
+
+<span class="cantidad">
+200 mL
+</span>
+
+<span class="nombre">
+Filtro B
+</span>
+
+</div>
+
+
+
+<div class="muestra-agua">
+
+<span class="cantidad">
+200 mL
+</span>
+
+<span class="nombre">
+Filtro C
+</span>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- PROCEDIMIENTO -->
+
+<h2>Procedimiento</h2>
+
+
+<ol>
+
+<li>
+Preparar 700 mL de agua con arcilla natural en polvo.
+</li>
+
+<li>
+Revolver la mezcla para mantener las partículas suspendidas.
+</li>
+
+<li>
+Separar 100 mL como muestra control, sin filtrar.
+</li>
+
+<li>
+Tomar 200 mL de la misma mezcla y aplicarlos al filtro A.
+</li>
+
+<li>
+Revolver nuevamente la mezcla y tomar 200 mL para el filtro B.
+</li>
+
+<li>
+Revolver nuevamente la mezcla y tomar los últimos 200 mL para el filtro C.
+</li>
+
+<li>
+Registrar el tiempo de filtración de cada filtro.
+</li>
+
+<li>
+Medir el volumen de agua recuperado después de cada filtración.
+</li>
+
+<li>
+Comparar visualmente la muestra control
+con el agua obtenida de los filtros A, B y C.
+</li>
+
+</ol>
+
+
+
+<!-- ÁREAS INTEGRADAS -->
+
+<section class="areas-integradas">
+
+
+<div class="titulo-areas">
+
+<h2>🔗 Áreas integradas en el proyecto</h2>
+
+<p>
+Cada área aporta conocimientos diferentes
+al experimento.
+</p>
+
+</div>
+
+
+
+<div class="smartart">
+
+
+<div class="conector linea-arriba"></div>
+
+<div class="conector linea-abajo"></div>
+
+<div class="conector linea-izquierda"></div>
+
+<div class="conector linea-derecha"></div>
+
+<div class="anillo-centro"></div>
+
+
+
+<div class="figura-area ciencias">
+
+<div class="icono-area">
+🔬
+</div>
+
+<h3>CIENCIAS</h3>
+
+<p>
+Método experimental<br>
+Observar · comparar · concluir
+</p>
+
+</div>
+
+
+
+<div class="figura-area quimica">
+
+<div class="icono-area">
+⚗️
+</div>
+
+<h3>QUÍMICA</h3>
+
+<p>
+Mezclas · turbidez<br>
+Filtración · adsorción
+</p>
+
+</div>
+
+
+
+<div class="figura-area fisica">
+
+<div class="icono-area">
+⚙️
+</div>
+
+<h3>FÍSICA</h3>
+
+<p>
+Gravedad · tiempo<br>
+Flujo de filtración
+</p>
+
+</div>
+
+
+
+<div class="figura-area tecnologia">
+
+<div class="icono-area">
+💻
+</div>
+
+<h3>TECNOLOGÍA</h3>
+
+<p>
+Diseño y construcción de los filtros<br>
+Registro de resultados en la página web
+</p>
+
+</div>
+
+
+
+<div class="centro-proyecto">
+
+<div class="gota-centro">
+💧
+</div>
+
+<strong>
+FILTROS<br>
+DE AGUA
+</strong>
+
+<span>
+Proyecto experimental
+</span>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<div class="boton-siguiente">
+
+<a class="boton" href="tiempo.html">
+
+Siguiente: medir tiempos →
+
+</a>
+
+</div>
+
+
+</div>
+
+
+
+<footer>
+
+Filtros de Agua con Tecnología
+
+</footer>
+
+
+</body>
+
+</html>
